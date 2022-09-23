@@ -137,9 +137,9 @@ fn make_turn_change_pkt(
         .u8(1) // 1 or 0
         .u8(0) // if [12] == 0
     // 14~16 kurumon
-        .u8(if_else(kurumon.is_some(), 1, 1)) // 1 or 0
+        .u8(if_else(kurumon.is_some(), 1, 0)) // 1 or 0
         .pad(1)
-        .u16(kurumon.unwrap_or(0)) // if [14] == 0 then kurumon position
+        .u16(kurumon.unwrap_or(1)) // if [14] == 0 then kurumon position
     // 18 unknown
         .u8(0x00) // if [18] & 0x10 != 0 then [18] & 0x0F (low bits)
     // 19~20 item
