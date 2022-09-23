@@ -134,7 +134,7 @@ fn make_turn_change_pkt(
     pw
         .i32(wind_velocity as i32) // -30 ~ 30 (wind velocity)
     // 12 unknown
-        .u8(0) // 1 or 0
+        .u8(1) // 1 or 0
         .u8(0) // if [12] == 0
     // 14~16 kurumon
         .u8(if_else(kurumon.is_some(), 0, 1)) // 1 or 0
@@ -152,7 +152,7 @@ fn make_turn_change_pkt(
     // 24
     for i in 0..8 {
         pw
-            .u16(0) // TODO: unknown
+            .u16(1) // TODO: unknown
             .pad(2)
             .u32(hp_list[i]) // hp
             .pad(4);
