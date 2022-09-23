@@ -1,32 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@OpSaSiN 
-jidoc01
-/
-RustyDO
-Public
-Code
-Issues
-2
-Pull requests
-Actions
-Projects
-Security
-Insights
-RustyDO/server/src/server/login/handler/on_game.rs
-@jidoc01
-jidoc01 End game gracefully when there is no winner
-…
-Latest commit 09b1386 18 days ago
- History
- 1 contributor
-683 lines (604 sloc)  20 KB
-
 // RustyDO
 //
 // Copyright 2022. JungHyun Kim (jidoc01).
@@ -710,17 +681,3 @@ pub fn handle(server: &mut Server, entity_id: &EntityId, pr: PacketReader) -> Re
         }
     }
 }
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
