@@ -134,7 +134,7 @@ fn make_turn_change_pkt(
     pw
         .i32(wind_velocity as i32) // -30 ~ 30 (wind velocity)
     // 12 unknown
-        .u8(1) // 1 or 0
+        .u8(0) // 1 or 0
         .u8(0) // if [12] == 0
     // 14~16 kurumon
         .u8(if_else(kurumon.is_some(), 0, 1)) // 1 or 0
@@ -146,7 +146,7 @@ fn make_turn_change_pkt(
         .u8(item_no) // item (0: no item)
         .u16(item_pos) // item position
     // 22
-        .u8(0) // visible
+        .u8(1) // visible
     // 23
         .u8(index_in_room as u8); // whose turn
     // 24
