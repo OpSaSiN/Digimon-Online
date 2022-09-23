@@ -1,3 +1,32 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@OpSaSiN 
+jidoc01
+/
+RustyDO
+Public
+Code
+Issues
+2
+Pull requests
+Actions
+Projects
+Security
+Insights
+RustyDO/server/src/server/login/handler/on_game.rs
+@jidoc01
+jidoc01 End game gracefully when there is no winner
+…
+Latest commit 09b1386 18 days ago
+ History
+ 1 contributor
+683 lines (604 sloc)  20 KB
+
 // RustyDO
 //
 // Copyright 2022. JungHyun Kim (jidoc01).
@@ -123,18 +152,18 @@ fn make_turn_change_pkt(
         index_in_room: u8,
         wind_velocity: i8,
         item: Option<(u8, u16)>,
-        mon: Option<u16>,
+        kurumon: Option<u16>,
         delay_list: &Vec<u16>,
         hp_list: &Vec<u32>
     ) -> Vec<u8> {
-    let (item_no, item_pos) = item.unwrap_or((1, 1));
+    let (item_no, item_pos) = item.unwrap_or((0, 1));
 
     let mut pw = PacketWriter::new(PACKET_END_TURN + 1);
     // 8
     pw
         .i32(wind_velocity as i32) // -30 ~ 30 (wind velocity)
     // 12 unknown
-        .u8(1) // 1 or 0
+        .u8(0) // 1 or 0
         .u8(0) // if [12] == 0
     // 14~16 kurumon
         .u8(if_else(kurumon.is_some(), 0, 1)) // 1 or 0
@@ -681,3 +710,17 @@ pub fn handle(server: &mut Server, entity_id: &EntityId, pr: PacketReader) -> Re
         }
     }
 }
+Footer
+© 2022 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
