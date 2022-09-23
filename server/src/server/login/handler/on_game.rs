@@ -146,13 +146,13 @@ fn make_turn_change_pkt(
         .u8(item_no) // item (0: no item)
         .u16(item_pos) // item position
     // 22
-        .u8(1) // visible
+        .u8(0) // visible
     // 23
         .u8(index_in_room as u8); // whose turn
     // 24
     for i in 0..8 {
         pw
-            .u16(1) // TODO: unknown
+            .u16(1) // 미역줄기
             .pad(2)
             .u32(hp_list[i]) // hp
             .pad(4);
