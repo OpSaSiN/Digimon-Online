@@ -123,11 +123,11 @@ fn make_turn_change_pkt(
         index_in_room: u8,
         wind_velocity: i8,
         item: Option<(u8, u16)>,
-        kurumon: Option<u16>,
+        mon: Option<u16>,
         delay_list: &Vec<u16>,
         hp_list: &Vec<u32>
     ) -> Vec<u8> {
-    let (item_no, item_pos) = item.unwrap_or((0, 0));
+    let (item_no, item_pos) = item.unwrap_or((1, 1));
 
     let mut pw = PacketWriter::new(PACKET_END_TURN + 1);
     // 8
@@ -137,7 +137,7 @@ fn make_turn_change_pkt(
         .u8(1) // 1 or 0
         .u8(0) // if [12] == 0
     // 14~16 kurumon
-        .u8(if_else(kurumon.is_some(), 0, 1)) // 1 or 0
+        .u8(if_else(kurumon.is_some(), 1, 1)) // 1 or 0
         .pad(1)
         .u16(kurumon.unwrap_or(0)) // if [14] == 0 then kurumon position
     // 18 unknown
